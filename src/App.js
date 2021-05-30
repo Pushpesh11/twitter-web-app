@@ -1,25 +1,33 @@
-import logo from './logo.svg';
 import './App.css';
+import Left from './Left';
+import Main from './Main';
+import Right from './Right';
+import { useGlobalContext} from './Context';
 
-function App() {
+
+export default function App() {
+   const { loading } = useGlobalContext()
+  if (loading) {
+    return (
+      <div className='loading'>
+        <h1>Loading...</h1>
+      </div>
+    )
+  }
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className='all'>
+      <div className="all-inside">
+        <div className="twitter-left">
+          <Left/>
+        </div>
+        <div className="twitter-center">
+          <Main/>
+        </div>
+        <div className="twitter-right">
+          <Right/>
+        </div>
+      </div>
     </div>
-  );
+  )
 }
 
-export default App;
